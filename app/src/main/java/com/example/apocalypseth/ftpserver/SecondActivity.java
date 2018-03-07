@@ -8,16 +8,32 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import org.apache.commons.net.ftp.FTPClient;
+
+import java.io.IOException;
+import java.io.Serializable;
+
 
 public class SecondActivity extends Activity {
 
+    FTPClient ftpClient;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_activity);
 
-        TableLayout statusTableLayout = (TableLayout)findViewById(R.id.table);
+        ftpClient= (FTPClient) getIntent().getSerializableExtra("ftpclient");
+
+        try {
+            System.out.println(ftpClient.getStatus("/"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+/*        TableLayout statusTableLayout = (TableLayout)findViewById(R.id.table);
         for(int i=0;i<2;i++)
         {
             LinearLayout statusTableRow = new LinearLayout(this);
@@ -45,6 +61,7 @@ public class SecondActivity extends Activity {
 
             }
             statusTableLayout.addView(statusTableRow);}
+            */
 
     }
 

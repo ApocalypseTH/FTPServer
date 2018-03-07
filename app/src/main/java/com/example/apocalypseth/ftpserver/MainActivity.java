@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import org.apache.commons.net.ftp.FTPClient;
 
+import java.io.Serializable;
 import java.net.InetAddress;
 
 
@@ -87,12 +88,21 @@ public class MainActivity extends Activity {
             try {
                 FTPClient ftpClient = new FTPClient();
                 ftpClient.connect(InetAddress.getByName(strings[0]));
-                ftpClient.login(strings[1], strings[2]);
+                boolean answer = ftpClient.login(strings[1], strings[2]);
+
+
+
+                if(answer){
+                    Intent i = new Intent(MainActivity.this,SecondActivity.class);
+                    startActivity(i);
+                    i.putExtra("ftpclient", (Serializable) ftpClient);
+
+                }
+                else{
+
+                }
 
                 System.out.println("status :: " + ftpClient.getStatus());
-
-                Intent i = new Intent(MainActivity.this,SecondActivity.class);
-                startActivity(i);
 
             } catch (Exception e) {
                 e.printStackTrace();
