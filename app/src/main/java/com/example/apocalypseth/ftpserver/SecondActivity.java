@@ -23,7 +23,7 @@ public class SecondActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_activity);
 
-        ftpClient= (FTPClient) getIntent().getSerializableExtra("ftpclient");
+        /*ftpClient= (FTPClient) getIntent().getSerializableExtra("ftpclient");
 
         try {
             System.out.println(ftpClient.getStatus("/"));
@@ -31,9 +31,9 @@ public class SecondActivity extends Activity {
             e.printStackTrace();
         }
 
+        */
 
-
-/*        TableLayout statusTableLayout = (TableLayout)findViewById(R.id.table);
+        TableLayout statusTableLayout = (TableLayout)findViewById(R.id.table);
         for(int i=0;i<2;i++)
         {
             LinearLayout statusTableRow = new LinearLayout(this);
@@ -60,8 +60,9 @@ public class SecondActivity extends Activity {
                 statusTableRow.addView(statusRelativelayout);
 
             }
-            statusTableLayout.addView(statusTableRow);}
-            */
+            statusTableLayout.addView(statusTableRow);
+        }
+
 
     }
 
