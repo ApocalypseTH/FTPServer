@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import org.apache.commons.net.ftp.FTPClient;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.net.InetAddress;
 
@@ -72,43 +73,24 @@ public class MainActivity extends Activity {
 
 
 
-    private void FtpConnect(){
-        final String h= host.getText().toString().trim();
-        final String u= user.getText().toString().trim();
-        final String p= password.getText().toString().trim();
+    private void FtpConnect() {
+        final String h = host.getText().toString().trim();
+        final String u = user.getText().toString().trim();
+        final String p = password.getText().toString().trim();
 
-        new Connection().execute(h, u, p);
-
-
-    }
-    private class Connection extends AsyncTask<String, Void, Void> {
-
-        @Override
-        protected Void doInBackground(String... strings) {
-            try {
-                FTPClient ftpClient = new FTPClient();
-                ftpClient.connect(InetAddress.getByName(strings[0]));
-                boolean answer = ftpClient.login(strings[1], strings[2]);
-
-
-
-                if(answer){
-                    Intent i = new Intent(MainActivity.this,SecondActivity.class);
-                    startActivity(i);
-                    i.putExtra("ftpclient", (Serializable) ftpClient);
-
-                }
-                else{
-
-                }
-
-                System.out.println("status :: " + ftpClient.getStatus());
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
+        Connection c = new Connection();
+        c.execute(h, u, p);
+        try {
+            System.out.println(c.ftpClient. getStatus("/"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        Intent i = new Intent(MainActivity.this,SecondActivity.class);
+        startActivity(i);
+        //i.putExtra("connection", (Serializable) c);
+        //finish();
+
 
     }
 

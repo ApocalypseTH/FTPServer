@@ -16,22 +16,22 @@ import java.io.Serializable;
 
 public class SecondActivity extends Activity {
 
-    FTPClient ftpClient;
+    Connection c;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_activity);
 
-        /*ftpClient= (FTPClient) getIntent().getSerializableExtra("ftpclient");
-
-        try {
-            System.out.println(ftpClient.getStatus("/"));
+        //Connection c = (Connection) getIntent().getSerializableExtra("connection");
+        c=new Connection();
+  /*      try {
+            System.out.println(c.ftpClient. getStatus("/"));
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } */
 
-        */
+
 
         TableLayout statusTableLayout = (TableLayout)findViewById(R.id.table);
         for(int i=0;i<2;i++)
